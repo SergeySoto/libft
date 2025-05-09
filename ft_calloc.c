@@ -6,7 +6,7 @@
 /*   By: ssoto-su <ssoto-su@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:21:41 by ssoto-su          #+#    #+#             */
-/*   Updated: 2025/05/07 21:56:55 by ssoto-su         ###   ########.fr       */
+/*   Updated: 2025/05/08 17:00:56 by ssoto-su         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void	*ft_calloc(size_t count, size_t size)
 	temp = (char *)malloc(count * size);
 	if (!temp)
 		return (NULL);
-	ft_bzero(temp,count*size);
+	ft_bzero(temp, count * size);
 	return (temp);
 }

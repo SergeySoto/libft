@@ -1,30 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssoto-su <ssoto-su@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 19:32:25 by ssoto-su          #+#    #+#             */
-/*   Updated: 2025/05/08 16:15:51 by ssoto-su         ###   ########.fr       */
+/*   Created: 2025/05/08 15:29:48 by ssoto-su          #+#    #+#             */
+/*   Updated: 2025/05/08 16:25:27 by ssoto-su         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <stdio.h>
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+static char	*ft_strcpy(char *dest, char *src)
 {
-	size_t	i;
+	int	i;
 
-	if (!dstsize)
-		return (ft_strlen(src));
 	i = 0;
-	while (src[i] != '\0' && i < dstsize - 1)
+	while (src[i] != '\0')
 	{
-		dst[i] = src[i];
+		dest[i] = src[i];
 		i++;
 	}
-	dst[i] = '\0';
-	return (ft_strlen(src));
+	dest[i] = '\0';
+	return (dest);
+}
+
+char	*ft_strdup(const char *s)
+{
+	int		len;
+	char	*result;
+
+	len = ft_strlen(s) + 1;
+	if (!s)
+		return (NULL);
+	result = (char *)malloc(len * (sizeof(char)));
+	if (!result)
+		return (NULL);
+	return (ft_strcpy(result, (char *)s));
 }
