@@ -6,7 +6,7 @@
 /*   By: ssoto-su <ssoto-su@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 18:41:21 by ssoto-su          #+#    #+#             */
-/*   Updated: 2025/05/02 20:11:59 by ssoto-su         ###   ########.fr       */
+/*   Updated: 2025/05/05 15:01:08 by ssoto-su         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	i;
+	size_t			i;
 	unsigned char	*temp;
 
 	i = 0;

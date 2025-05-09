@@ -1,30 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssoto-su <ssoto-su@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 19:32:25 by ssoto-su          #+#    #+#             */
-/*   Updated: 2025/05/08 16:15:51 by ssoto-su         ###   ########.fr       */
+/*   Created: 2025/05/06 16:50:47 by ssoto-su          #+#    #+#             */
+/*   Updated: 2025/05/07 20:08:46 by ssoto-su         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+int	ft_atoi(const char *nptr)
 {
-	size_t	i;
+	int			i;
+	size_t		simbol;
+	long int	chain;
 
-	if (!dstsize)
-		return (ft_strlen(src));
 	i = 0;
-	while (src[i] != '\0' && i < dstsize - 1)
+	simbol = 1;
+	chain = 0;
+	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
 	{
-		dst[i] = src[i];
 		i++;
 	}
-	dst[i] = '\0';
-	return (ft_strlen(src));
+	if (nptr[i] == '-')
+	{
+		simbol = -simbol;
+		i++;
+	}
+	else if (nptr[i] == '+')
+		i++;
+	while (nptr[i] >= 48 && nptr[i] <= 57)
+	{
+		chain = (chain * 10) + (nptr[i] - '0');
+		i++;
+	}
+	return (chain * simbol);
 }

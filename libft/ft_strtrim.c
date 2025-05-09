@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssoto-su <ssoto-su@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 19:32:25 by ssoto-su          #+#    #+#             */
-/*   Updated: 2025/05/08 16:15:51 by ssoto-su         ###   ########.fr       */
+/*   Created: 2025/05/09 20:42:41 by ssoto-su          #+#    #+#             */
+/*   Updated: 2025/05/09 21:17:59 by ssoto-su         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+static int ft_trimming(char const *s1, char const *set)
 {
-	size_t	i;
+	unsigned char	front;
+	unsigned char	end;
+	int	i;
 
-	if (!dstsize)
-		return (ft_strlen(src));
-	i = 0;
-	while (src[i] != '\0' && i < dstsize - 1)
+	while (s1[i] == set)
 	{
-		dst[i] = src[i];
 		i++;
 	}
-	dst[i] = '\0';
-	return (ft_strlen(src));
+	
+}
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] != set[i])
+	{
+		
+	}
 }
