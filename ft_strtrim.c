@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssoto-su <ssoto-su@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 19:17:22 by ssoto-su          #+#    #+#             */
-/*   Updated: 2025/05/09 20:27:59 by ssoto-su         ###   ########.fr       */
+/*   Created: 2025/05/09 20:42:41 by ssoto-su          #+#    #+#             */
+/*   Updated: 2025/05/12 12:54:40 by ssoto-su         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	len_s1s2;
+	int		start;
+	int		end;
 	char	*str;
+	int		i;
 
-	len_s1s2 = ft_strlen(s1) + ft_strlen(s2);
-	str = (char *)ft_calloc(len_s1s2 + 1, sizeof(char));
+	i = 0;
+	start = 0;
+	end = ft_strlen(s1);
+	while (s1[start] && ft_strchr(set, s1[start]))
+		start++;
+	while (end > start && ft_strchr(set, s1[end - 1]))
+		end--;
+	str = ft_calloc((end - start) + 1, sizeof(char));
 	if (!str)
 		return (NULL);
-	ft_strlcpy(str, s1, len_s1s2 + 1);
-	ft_strlcat(str, s2, len_s1s2 + 1);
+	while (start < end)
+	{
+		str[i] += s1[start];
+		start++;
+		i++;
+	}
+	str[end] = '\0';
 	return (str);
 }
