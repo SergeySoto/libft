@@ -6,7 +6,7 @@
 /*   By: ssoto-su <ssoto-su@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:56:25 by ssoto-su          #+#    #+#             */
-/*   Updated: 2025/05/12 21:36:59 by ssoto-su         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:19:52 by ssoto-su         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static int	word_len(char const *s, char c)
 	while (s[i] && s[i] != c)
 		i++;
 	return (i);
- }
+}
+
 static int	word_count(char const *s, char c)
 {
 	int	i;
@@ -45,11 +46,11 @@ static int	word_count(char const *s, char c)
 	}
 	return (count);
 }
-	
-	char **create_assface(int wc)
+
+char	**create_mem(int wc)
 {
-	char **str;
-	
+	char	**str;
+
 	str = (char **)ft_calloc(wc + 1, sizeof(char *));
 	if (!str)
 	{
@@ -59,42 +60,44 @@ static int	word_count(char const *s, char c)
 	return (str);
 }
 
+static void	free_mem(char **array, int count)
+{
+	if (!array)
+	{
+		while (count > 0)
+		{
+			free(array[count]);
+			count--;
+		}
+	}
+	free(array);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**array;
-	int	i;
-	int	flag;
-	int count;
-	
+	int		i;
+	int		flag;
+	int		count;
+
 	i = -1;
 	count = 0;
 	flag = 0;
-
-	if (!s)
+	array = create_mem(word_count(s, c));
+	if (!s || !(array))
 		return (NULL);
-	array = create_assface(word_count(s, c));
-	if (!array)
-	{
-		free(array);
-		return (NULL);
-	}
-	while(s[++i] != '\0')
+	while (s[++i] != '\0')
 	{
 		if (s[i] != c && flag == 0)
 		{
 			array[count] = ft_substr(&s[i], 0, word_len(&s[i], c));
 			if (!array[count])
-			{
-				free(array[count]);
-				return (NULL);
-			}
+				free_mem(array, count);
 			count++;
 			flag = 1;
 		}
 		if (s[i] == c)
-		{
 			flag = 0;
-		}
 	}
 	return (array);
-} 
+}
