@@ -6,11 +6,12 @@
 /*   By: ssoto-su <ssoto-su@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:56:25 by ssoto-su          #+#    #+#             */
-/*   Updated: 2025/05/14 11:33:51 by ssoto-su         ###   ########.fr       */
+/*   Updated: 2025/05/14 19:42:35 by ssoto-su         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static int	word_len(char const *s, char c)
 {
