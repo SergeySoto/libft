@@ -23,31 +23,20 @@ t_list *ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	{
 		if(!inicio_new_list)
 		{
-			temp = ft_lstnew(f(temp->content));
-			/* si falla, eliminamos todo y devolvemos NULL */
+			inicio_new_list = ft_lstnew(f(lst->content));
+			if (!inicio_new_list)
+				return (NULL);
 		}
-		else {
-			// crear un nodo
-			// añadirlo al final
-			/* si falla, eliminamos todo y devolvemos NULL */
-
+		else 
+		{
+			temp = ft_lstnew(f(lst->content));
+			if (!temp)
+			{
+				ft_lstclear(&temp, del);
+				return (NULL);
+			}
+			ft_lstadd_back(&inicio_new_list, temp);
 		}
-
-		// crear el nodo
-		// con ft_lstadd_back se añade al final o como primer nodo de la lista
-		/* si falla, eliminamos todo y devolvemos NULL */
-
-
-
-
-		// if (!temp)
-		// {
-		// 	del(temp->content);
-		// 	ft_lstclear(&,del);
-		// 	free(temp);
-		// }
-		// temp = temp->next;
-
 		lst = lst->next;
 	}
 	temp->next = NULL;
