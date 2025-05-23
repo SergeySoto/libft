@@ -48,6 +48,19 @@ static int	word_count(char const *s, char c)
 	return (count);
 }
 
+static void	free_mem(char **array, int count)
+{
+	if (array)
+	{
+		while (count > 0)
+		{
+			free(array[count - 1]);
+			count--;
+		}
+	}
+	free(array);
+}
+
 char	**create_mem(int wc)
 {
 	char	**str;
@@ -55,23 +68,10 @@ char	**create_mem(int wc)
 	str = (char **)ft_calloc(wc + 1, sizeof(char *));
 	if (!str)
 	{
-		free(str);
+		free_mem(str, wc);
 		return (NULL);
 	}
 	return (str);
-}
-
-static void	free_mem(char **array, int count)
-{
-	if (!array)
-	{
-		while (count > 0)
-		{
-			free(array[count]);
-			count--;
-		}
-	}
-	free(array);
 }
 
 char	**ft_split(char const *s, char c)
@@ -93,7 +93,10 @@ char	**ft_split(char const *s, char c)
 		{
 			array[count] = ft_substr(&s[i], 0, word_len(&s[i], c));
 			if (!array[count])
+			{
 				free_mem(array, count);
+				return (NULL);
+			}
 			count++;
 			flag = 1;
 		}
